@@ -1,0 +1,21 @@
+<!doctype html>
+<html ng-app="music">
+  <head>
+    <title>My Music Store</title>
+    <link href="/music.css" rel="stylesheet" type="text/css"/>
+  </head>
+
+  <body>
+    <!-- Header and navigation would go here -->
+    <h1>Welcome to My Music Store</h1>
+
+    <!-- This is where we'll place our content -->
+    <div>
+      <h2>{{message}} - {{message.length}}</h2>
+      <input type="text" placeholder="Type something..." ng-model="message"/>
+
+    <!-- Load our JavaScript -->
+    <script src="/js/angular/angular.js"></script>
+    <script src="/js/music.js"></script>
+  </body>
+</html>
