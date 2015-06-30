@@ -3,8 +3,7 @@
 ################################################################################
 boot () {
   npm install git://pmade.com/mockapie
-  npm install jshint
-  npm install jasmine
+  npm install jshint jasmine karma-cli karma karma-jasmine
 
   sed 's|./../|../node_modules/mockapie/|' \
       < node_modules/mockapie/bin/mockapie \
