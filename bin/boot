@@ -43,9 +43,73 @@ release () {
 }
 
 ################################################################################
+# Bootstrap music data from beets.
+data () {
+  for file in artists.yml albums.yml songs.yml; do
+    cat /dev/null > data/$file
+  done
+
+  artists="bf710b71-48e5-4e15-9bd6-96debb2e4e98"
+  artists="$artists 8538e728-ca0b-4321-b7e5-cff6565dd4c0"
+  artists="$artists 696d8523-39a0-44e2-9add-afaa183a2f46"
+  artists="$artists e105c272-b5d7-4135-82ef-d60bded54345"
+  artists="$artists 4dbe08c1-b40a-43b3-ab89-210000bd8ab2"
+  artists="$artists a1419808-65d3-4d40-998c-1a0bac65eabc"
+
+  artist_id=1
+
+  for artist in $artists; do
+    name=`beet ls -a mb_albumartistid:$artist -f '$albumartist' | head -1`
+    printf -- "- name: \"$name\"\n  id: $artist_id\n" >> data/artists.yml
+
+    for album in `beet ls -a mb_albumartistid:${artist} -f '$id' year+`; do
+      format=`album_format $artist_id`
+      beet ls -a id:$album -f "$format" >> data/albums.yml
+
+      for song in `beet ls album_id:$album -f '$id' track+`; do
+        format=`song_format $album`
+        beet ls id:$song -f "$format" >> data/songs.yml
+      done
+    done
+
+    artist_id=`expr $artist_id + 1`
+  done
+}
+
+################################################################################
+album_format () {
+cat <<EOF
+- name: "\$album"
+  id: \$id
+  asin: \$asin
+  label: \$label
+  released: "\$year-\$month-\$day"
+  price: 6.99
+  artist_id: $1
+EOF
+}
+
+################################################################################
+song_format () {
+cat <<EOF
+- name: "\$title"
+  id: \$id
+  album_id: $1
+  track: \$track
+  length: \$length
+  genre: \$genre
+  price: 0.99
+EOF
+}
+
+################################################################################
 case $1 in
   release)
     release
+    ;;
+
+  data)
+    data
     ;;
 
   *)
