@@ -99,7 +99,7 @@ EOF
 }
 
 ################################################################################
-case $1 in
+case ${1:-boot} in
   release)
     release
     ;;
@@ -108,7 +108,12 @@ case $1 in
     data
     ;;
 
-  *)
+  boot)
     boot
+    ;;
+
+  *)
+    echo "WTF?"
+    exit 1
     ;;
 esac
