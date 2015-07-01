@@ -1,7 +1,10 @@
-#!/bin/sh -e
+#!/bin/sh -eu
 
 ################################################################################
 boot () {
+  # Start by clearing things out:
+  rm -rf node_modules
+
   npm install git://pmade.com/mockapie
   npm install jshint jasmine karma-cli karma karma-jasmine
 
