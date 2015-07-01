@@ -1,6 +1,6 @@
-/bin/server.js
 /bin/jshint
 /bin/jasmin
 /node_modules
 /VERSION
 /bower_components/
+/bin/server
