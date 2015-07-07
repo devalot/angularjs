@@ -1,0 +1,9 @@
+<div>
+  <ul>
+    <li ng-repeat="artist in top.artists">
+      <a href="#/artists/{{artist.id}}">{{artist.name}}</a>
+    </li>
+  </ul>
+
+  <button ng-click="top.addArtist()">Add New Artist</button>
+</div>

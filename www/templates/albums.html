@@ -1,0 +1,25 @@
+<h2>Albums for <span class="artist-name">{{ac.artist.name}}</span></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Label</th>
+      <th>Release Date</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="album in ac.albums">
+      <td>
+        <a href="#/artists/{{ac.artist.id}}/albums/{{album.id}}">
+          {{album.name}}
+        </a>
+      </td>
+      <td>{{album.label}}</td>
+      <td>{{album.released}}</td>
+      <td>{{album.price}}</td>
+    </tr>
+  </tbody>
+</table>
