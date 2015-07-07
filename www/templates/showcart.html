@@ -1,0 +1,32 @@
+<p ng-show="show.isEmpty()">
+  Your cart is empty.
+  <a ui-sref="artists">Go shopping!</a>
+</p>
+
+<table ng-hide="show.isEmpty()">
+  <thead>
+    <tr>
+      <th>Artist</th>
+      <th>Album</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tfoot>
+    <tr>
+      <td colspan="2" class="cart-total">Total:</td>
+      <td>{{show.cart.total | currency }}</td>
+      <td></td>
+    </tr>
+  </tfoot>
+
+  <tbody>
+    <tr ng-repeat="album in show.cart.albums">
+      <td>{{album.artist_name}}</td>
+      <td>{{album.name}}</td>
+      <td>{{album.price | currency}}</td>
+      <td><button ng-click="show.removeAlbum(album)">Remove</button></td>
+    </tr>
+  </tbody>
+</table>

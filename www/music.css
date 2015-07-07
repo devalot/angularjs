@@ -1,3 +1,26 @@
+nav ul {
+  margin: 0 0 1em 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+nav ul li {
+  margin: 0;
+  padding: 1em;
+  display: inline;
+  background-color: white;
+  color: blue;
+}
+
+nav ul li.active {
+  background-color: blue;
+  color: white;
+}
+
+nav ul li a {
+  color: inherit;
+}
+
 table {
   border-collapse: collapse;
 }
@@ -7,12 +30,20 @@ td, th {
   padding: 5px;
 }
 
-th {
+th, tfoot td {
   border: 1px solid #888;
   font-weight: bold;
   background-color: #ddd;
 }
 
+.cart-total {
+  text-align: right;
+}
+
 .artist-name {
   color: #6c71c4;
+}
+
+#search {
+  margin: 2em 1em;
 }

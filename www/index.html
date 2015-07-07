@@ -6,19 +6,33 @@
   </head>
 
   <body>
+    <nav>
+      <ul>
+        <li ui-sref-active="active">
+          <a ui-sref="artists">Home</a>
+        </li>
+
+        <li ui-sref-active="active">
+          <a ui-sref="cart">View Cart</a>
+        </li>
+      </ul>
+    </nav>
+
     <!-- Header and navigation would go here -->
     <h1>Welcome to My Music Store</h1>
 
     <!-- This is where we'll place our content -->
-    <div ng-view></div>
+    <div ui-view><div>
 
     <!-- Load our JavaScript -->
     <script src="/js/angular/angular.js"></script>
     <script src="/js/angular/angular-resource.js"></script>
-    <script src="/js/angular/angular-route.js"></script>
+    <script src="/js/angular/angular-ui-router.js"></script>
     <script src="/js/music.js"></script>
     <script src="/js/controllers/top_artists.js"></script>
     <script src="/js/controllers/albums.js"></script>
     <script src="/js/controllers/songs.js"></script>
+    <script src="/js/controllers/addtocart.js"></script>
+    <script src="/js/controllers/showcart.js"></script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 <div>
   <ul>
     <li ng-repeat="artist in top.artists">
-      <a href="#/artists/{{artist.id}}">{{artist.name}}</a>
+      <a ui-sref="albums({artist_id: artist.id})">{{artist.name}}</a>
     </li>
   </ul>
 
