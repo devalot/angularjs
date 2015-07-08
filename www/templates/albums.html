@@ -29,8 +29,11 @@
       <td>{{album.price | currency}}</td>
       <td>
 
-        <button ng-hide="cart.albumInCart(album)"
-                ng-click="cart.addAlbum(ac.artist, album)">Buy</button>
+        <button ng-hide="cart.hasAlbum(album)"
+                ng-click="cart.addAlbum(album)">Buy</button>
+
+        <button ng-show="cart.hasAlbum(album)"
+                ng-click="cart.removeAlbum(album)">Remove</button>
 
       </td>
     </tr>

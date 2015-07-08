@@ -16,13 +16,13 @@
   <tfoot>
     <tr>
       <td colspan="2" class="cart-total">Total:</td>
-      <td>{{show.cart.total | currency }}</td>
-      <td></td>
+      <td>{{show.total() | currency }}</td>
+      <td><button ng-click="show.clear()">Clear Cart</td>
     </tr>
   </tfoot>
 
   <tbody>
-    <tr ng-repeat="album in show.cart.albums">
+    <tr ng-repeat="album in show.albums()">
       <td>{{album.artist_name}}</td>
       <td>{{album.name}}</td>
       <td>{{album.price | currency}}</td>

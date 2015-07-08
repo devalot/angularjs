@@ -3,10 +3,28 @@ angular.module("music", ["ngResource", "ui.router"]).
     $urlRouterProvider.otherwise("/");
 
     $stateProvider.
+      state("root", {
+        abstract: true,
+
+        views: {
+          "": {},
+
+          "tally": {
+            templateUrl: "/templates/cart_tally.html",
+            controller: "CartTallyController as tally",
+          },
+        },
+      }).
       state("artists", {
+        parent: "root",
         url: "/",
-        templateUrl: "/templates/top_artists.html",
-        controller: "TopArtistsController as top",
+
+        views: {
+          "@": {
+            templateUrl: "/templates/top_artists.html",
+            controller: "TopArtistsController as top",
+          },
+        },
 
         resolve: {
           artists: function(Artist) {
@@ -15,9 +33,15 @@ angular.module("music", ["ngResource", "ui.router"]).
         },
       }).
       state("albums", {
+        parent: "root",
         url: "/artists/:artist_id",
-        templateUrl: "/templates/albums.html",
-        controller: "AlbumsController as ac",
+
+        views: {
+          "@": {
+            templateUrl: "/templates/albums.html",
+            controller: "AlbumsController as ac",
+          }
+        },
 
         resolve: {
           artist: function($stateParams, Artist) {
@@ -53,12 +77,17 @@ angular.module("music", ["ngResource", "ui.router"]).
         },
       }).
       state("cart", {
+        parent: "root",
         url: "/cart",
-        templateUrl: "/templates/showcart.html",
-        controller: "ShowCartController as show",
+
+        views: {
+          "@": {
+            templateUrl: "/templates/showcart.html",
+            controller: "ShowCartController as show",
+          },
+        },
       });
   }).
-  value("cart", {total: 0, albums: []}).
   factory("Artist", function($resource) {
     return $resource("/api/artists/:id");
   }).

@@ -13,7 +13,9 @@
         </li>
 
         <li ui-sref-active="active">
-          <a ui-sref="cart">View Cart</a>
+          <a ui-sref="cart">
+            Cart: <span ui-view="tally"></span>
+          </a>
         </li>
       </ul>
     </nav>
@@ -29,10 +31,12 @@
     <script src="/js/angular/angular-resource.js"></script>
     <script src="/js/angular/angular-ui-router.js"></script>
     <script src="/js/music.js"></script>
+    <script src="/js/cart.js"></script>
     <script src="/js/controllers/top_artists.js"></script>
     <script src="/js/controllers/albums.js"></script>
     <script src="/js/controllers/songs.js"></script>
     <script src="/js/controllers/addtocart.js"></script>
     <script src="/js/controllers/showcart.js"></script>
+    <script src="/js/controllers/cart_tally.js"></script>
   </body>
 </html>
