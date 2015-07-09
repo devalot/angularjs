@@ -25,7 +25,26 @@ angular.module("music", ["ngResource", "ui.router"]).
               id: $stateParams.artist_id,
             }).$promise;
           },
-          albums: function($stateParams, Album) {
+          albums: function($stateParams, $resource, artist) {
+            var Album = $resource("/api/artists/:artist_id/albums/:id", {}, {
+              "query": {
+                method: "GET",
+                isArray: true,
+                transformResponse: function(data) {
+                  // 1. Convert raw data from JSON.
+                  var albums = angular.fromJson(data);
+
+                  // 2. Attach artist_name to all albums.
+                  albums.forEach(function(album) {
+                    album.artist_name = artist.name;
+                  });
+
+                  // 3. Return the transformed data.
+                  return albums;
+                },
+              }
+            });
+
             return Album.query({
               artist_id: $stateParams.artist_id,
             }).$promise;
