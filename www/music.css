@@ -47,3 +47,19 @@ th, tfoot td {
 #search {
   margin: 2em 1em;
 }
+
+form .ng-dirty.ng-invalid {
+  border: 2px solid red;
+}
+
+.buttons {
+  float: right;
+}
+
+.buttons button {
+  margin-top: 5px;
+}
+
+.clear {
+  clear: both;
+}

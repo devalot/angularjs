@@ -1,5 +1,7 @@
 angular.module("music").
-  service("cart", function() {
+  service("cart", function($resource) {
+    var Order = $resource("/api/orders/:id");
+
     var cart = {
       total:  0,
       albums: [],
@@ -52,5 +54,14 @@ angular.module("music").
     this.clear = function() {
       cart.total = 0;
       cart.albums.splice(0, cart.albums.length);
+    };
+
+    this.purchase = function(customer) {
+      var order = new Order();
+      order.total = cart.total;
+      order.albums = cart.albums.map(function(a) {return a.id;});
+      order.customer = customer;
+      order.$save();
+      this.clear();
     };
   });

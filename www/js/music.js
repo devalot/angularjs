@@ -3,28 +3,10 @@ angular.module("music", ["ngResource", "ui.router"]).
     $urlRouterProvider.otherwise("/");
 
     $stateProvider.
-      state("root", {
-        abstract: true,
-
-        views: {
-          "": {},
-
-          "tally": {
-            templateUrl: "/templates/cart_tally.html",
-            controller: "CartTallyController as tally",
-          },
-        },
-      }).
       state("artists", {
-        parent: "root",
         url: "/",
-
-        views: {
-          "@": {
-            templateUrl: "/templates/top_artists.html",
-            controller: "TopArtistsController as top",
-          },
-        },
+        templateUrl: "/templates/top_artists.html",
+        controller: "TopArtistsController as top",
 
         resolve: {
           artists: function(Artist) {
@@ -33,15 +15,9 @@ angular.module("music", ["ngResource", "ui.router"]).
         },
       }).
       state("albums", {
-        parent: "root",
         url: "/artists/:artist_id",
-
-        views: {
-          "@": {
-            templateUrl: "/templates/albums.html",
-            controller: "AlbumsController as ac",
-          }
-        },
+        templateUrl: "/templates/albums.html",
+        controller: "AlbumsController as ac",
 
         resolve: {
           artist: function($stateParams, Artist) {
@@ -77,13 +53,28 @@ angular.module("music", ["ngResource", "ui.router"]).
         },
       }).
       state("cart", {
-        parent: "root",
         url: "/cart",
 
         views: {
-          "@": {
+          "": {
             templateUrl: "/templates/showcart.html",
             controller: "ShowCartController as show",
+          },
+        },
+      }).
+      state("cart.form", {
+        views: {
+          "@": {
+            templateUrl: "/templates/cart_form.html",
+            controller: "CartFormController as cartForm",
+          },
+        },
+      }).
+      state("cart.thankyou", {
+        views: {
+          "@": {
+            templateUrl: "/templates/cart_thankyou.html",
+            controller: function() {},
           },
         },
       });

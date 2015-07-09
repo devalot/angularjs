@@ -17,7 +17,7 @@
     </tr>
   </thead>
 
-  <tbody ng-controller="AddToCartController as cart">
+  <tbody>
     <tr ng-repeat="album in ac.albums | filter:search">
       <td>
         <a ui-sref="albums.songs({artist_id: ac.artist.id, album_id: album.id})">
@@ -27,15 +27,7 @@
       <td>{{album.label}}</td>
       <td>{{album.released | date}}</td>
       <td>{{album.price | currency}}</td>
-      <td>
-
-        <button ng-hide="cart.hasAlbum(album)"
-                ng-click="cart.addAlbum(album)">Buy</button>
-
-        <button ng-show="cart.hasAlbum(album)"
-                ng-click="cart.removeAlbum(album)">Remove</button>
-
-      </td>
+      <td><span music-buy album="album"></span></td>
     </tr>
   </tbody>
 </table>

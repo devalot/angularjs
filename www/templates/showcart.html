@@ -17,7 +17,10 @@
     <tr>
       <td colspan="2" class="cart-total">Total:</td>
       <td>{{show.total() | currency }}</td>
-      <td><button ng-click="show.clear()">Clear Cart</td>
+      <td class="buttons">
+        <button ng-click="show.clear()">Clear Cart</button><br/>
+        <button ng-click="show.showForm()">Checkout</button>
+      </td>
     </tr>
   </tfoot>
 
@@ -26,7 +29,9 @@
       <td>{{album.artist_name}}</td>
       <td>{{album.name}}</td>
       <td>{{album.price | currency}}</td>
-      <td><button ng-click="show.removeAlbum(album)">Remove</button></td>
+      <td>
+        <button ng-click="show.removeAlbum(album)">Remove</button>
+      </td>
     </tr>
   </tbody>
 </table>
