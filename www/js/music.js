@@ -1,4 +1,4 @@
-angular.module("music", ["ngResource", "ui.router"]).
+angular.module("music", ["ngResource", "ui.router", "ngAnimate"]).
   config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
 

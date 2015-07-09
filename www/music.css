@@ -63,3 +63,13 @@ form .ng-dirty.ng-invalid {
 .clear {
   clear: both;
 }
+
+.ng-enter, .ng-leave {
+  transition: 1s cubic-bezier(0.420, 0.000, 1.000, 1.000) all;
+}
+
+.ng-leave.ng-leave-active, .ng-enter {
+  transform: scaleY(0);
+  opacity: 0;
+  height: 0;
+}
